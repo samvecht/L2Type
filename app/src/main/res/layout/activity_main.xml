@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:orientation="vertical"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.sam.l2type.MainActivity">
+
+    <Button
+        android:text="@string/change_settings_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="goToSettings"
+        android:id="@+id/change_settings_button"/>
+
+    <Button
+        android:text="@string/play_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="goToPlay"
+        android:id="@+id/play_button"/>
+    <Button
+        android:text="@string/new_levels_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="getNewLevels"
+        android:id="@+id/new_levels_button"/>
+    <Button
+        android:text="@string/stats_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="goToStats"
+        android:id="@+id/stats_button"/>
+    <Button
+        android:text="@string/share_stats_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="shareStats"
+        android:id="@+id/share_stats_button"/>
+    <Button
+        android:text="@string/logout_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="logout"
+        android:id="@+id/logout_button"/>
+
+
+
+
+</LinearLayout>
