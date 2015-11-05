@@ -13,7 +13,9 @@
 
     <EditText android:hint="@string/pass_hint" android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/pass_box"/>
+        android:id="@+id/pass_box"
+        android:maxLength="4"
+        android:inputType="numberPassword"/>
 
     <Button
         android:text="@string/login_button"
