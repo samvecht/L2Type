@@ -35,41 +35,20 @@ public class LoginPage extends AppCompatActivity {
 
     }
 
-    /**
-     * Checks if an account name is valid
-     * An account name can't be the same as a user already in the system
-     * and can't be "guest" or empty
-     * @param uname the user name being checked
-     * @return
-     */
-    private boolean checkAccountNameAvailable(String uname) {
-        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
-        String defaultValue = "";
-        String check = sharedPref.getString(uname, defaultValue);
-        return check.equals(defaultValue) && !uname.equals(GUEST_NAME) && !uname.equals("");
-    }
+
 
     /**
-     * Creates a new local user account from the data provided in the loginpages textviews
-     * Displays a toast if account create failed/succeeded
+     * Transfers activity to the account creation page.
      * @param v
      */
     public void createAccount(View v) {
-        final String uname = ((EditText) findViewById(R.id.uname_box)).getText().toString();
-        final String pass = ((EditText) findViewById(R.id.pass_box)).getText().toString();
-        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
-        if(checkAccountNameAvailable(uname)
-                && !pass.equals("")
-                && pass.length() == 4) {
-            SharedPreferences.Editor editor = sharedPref.edit();
-            editor.putString(uname, pass);
-            editor.commit();
+        String uname = ((EditText) findViewById(R.id.uname_box)).getText().toString();
+        String pass = ((EditText) findViewById(R.id.pass_box)).getText().toString();
+        Intent mainActivity = new Intent(LoginPage.this, CreateAccountPage.class);
+        mainActivity.putExtra("uname", uname);
+        mainActivity.putExtra("pass", pass);
+        startActivity(mainActivity);
 
-            Toast.makeText(this, "Account Created", Toast.LENGTH_SHORT).show();
-            goToMain(uname);
-        } else {
-            Toast.makeText(this, "Account Creation Failed", Toast.LENGTH_SHORT).show();
-        }
     }
 
     /**
@@ -107,7 +86,7 @@ public class LoginPage extends AppCompatActivity {
      * @return
      */
     private boolean checkPassword(String uname, String pass) {
-        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = this.getSharedPreferences(getString(R.string.loginFile), Context.MODE_PRIVATE);
         String defaultValue = "";
         String password = sharedPref.getString(uname, defaultValue);
         return password.equals(pass);

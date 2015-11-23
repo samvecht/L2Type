@@ -22,6 +22,10 @@
         </activity>
         <activity android:name=".LevelSelectScreen" >
         </activity>
+        <activity android:name=".CreateAccountPage" >
+        </activity>
+        <activity android:name=".PlayScreen" >
+        </activity>
     </application>
 
 </manifest>

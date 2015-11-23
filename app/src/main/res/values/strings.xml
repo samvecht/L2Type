@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">L2Type</string>
     <string name="uname_hint">username</string>
-    <string name="pass_hint">PIN</string>
+    <string name="pass_hint">password</string>
     <string name="login_button">Log In</string>
+    <string name="start_button">Start!</string>
     <string name="guest_button">Enter as Guest</string>
     <string name="new_account_button">Create a new Account</string>
     <string name="login_fail">Login Failed!</string>
@@ -12,5 +13,7 @@
     <string name="stats_button">Stats</string>
     <string name="share_stats_button">Share Stats</string>
     <string name="logout_button">logout</string>
+    <string name="back_button">Back</string>
+    <string name="loginFile">com.sam.l2type.LOGIN_PREFERENCES</string>
 
 </resources>
