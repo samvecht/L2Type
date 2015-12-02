@@ -1,6 +1,7 @@
 package com.sam.l2type;
 
 import android.support.annotation.StringRes;
+import android.util.Log;
 
 /**
  * A single pack of levels made to be played together
@@ -62,12 +63,12 @@ public class LevelPack {
     }
 
     /**
-     * Gets a level(1 through numLevels inclusive from the pack)
+     * Gets a level(0 through numLevels-1 inclusive from the pack)
      * @return a single level
      */
     public String getLevel(int i) {
-        if(i >= 1 && i <= numLevels) {
-            return levels[i - 1];
+        if(i >= 0 && i < numLevels) {
+            return levels[i];
         }
         else return "";
     }
@@ -100,15 +101,21 @@ public class LevelPack {
 
     /**
      * Sets a single level of the pack
-     * @param index a level 1-10 inclusive
+     * @param index a level 0-9 inclusive
      * @param level the levels text
      */
-    public void setLevel(int index, String level) {
-        levels[index - 1] = level;
+    public void setLevel(int index, String level){
+        if(index >= 0 && index <= 9) {
+            levels[index] = level;
+        }
     }
 
     @Override
     public String toString() {
-        return "Pack #" + id + " " + name + " levels: " + numLevels;
+        String result = "Pack #" + id + " " + name + " levels: " + numLevels;
+        for(int i = 0; i < numLevels; i++) {
+            result += ("{" + levels[i] + "}");
+        }
+        return result;
     }
 }

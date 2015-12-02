@@ -79,9 +79,7 @@ public class LevelPackGetter {
 // a string.
         private String downloadUrl(String myurl) throws IOException {
             InputStream is = null;
-            // Only display the first 500 characters of the retrieved
-            // web page content.
-            int len = 500;
+            int len = 5000;
 
             try {
                 URL url = new URL(myurl);
@@ -150,9 +148,10 @@ public class LevelPackGetter {
                         values.put(LevelsDB.NUM_LEVELS_ATTR, numLevels);
 
                         String[] levelsArray = new String[10];
-                        for(int j = 1; j < 10; j++) {
-                            levelsArray[j] = "" + jsonObject.get(("level" + (j + 1)));
-                            values.put((LevelsDB.LEVEL_ATTR + j), levelsArray[j]);
+                        for(int j = 0; j < 10; j++) {
+                            int k = j + 1;
+                            levelsArray[j] = "" + jsonObject.get(("level" + (k)));
+                            values.put((LevelsDB.LEVEL_ATTR + k), levelsArray[j]);
                         }
                         db.insert(LevelsDB.TABLE_NAME, null, values);
 

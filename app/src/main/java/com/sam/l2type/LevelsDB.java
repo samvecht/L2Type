@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,9 +83,10 @@ public class LevelsDB extends SQLiteOpenHelper {
                 pack.setName(cursor.getString(1));
                 pack.setNumLevels(Integer.parseInt(cursor.getString(2)));
                 for(int i = 0; i < 10; i++) {
-                    pack.setLevel(i + 1, "" + cursor.getString(i + 3));
+                    pack.setLevel(i, "" + cursor.getString(i + 3));
                 }
                 levelpacks.add(pack);
+                Log.i("L2Type", pack.toString());
             } while(cursor.moveToNext());
         }
         return levelpacks;
