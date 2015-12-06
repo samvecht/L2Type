@@ -13,15 +13,17 @@ import android.widget.Toast;
  */
 public class MainActivity extends AppCompatActivity {
 
-
+    String uname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        uname = getIntent().getStringExtra("username");
         TextView userNameDisplay = (TextView) this.findViewById(R.id.user_name_display);
-        userNameDisplay.setText("Welcome: " + getIntent().getStringExtra("username"));
-
+        userNameDisplay.setText("Welcome: " + uname);
+        LevelPackGetter getter = new LevelPackGetter(this);
+        getter.downloadLevels();
     }
 
     /**
@@ -29,7 +31,14 @@ public class MainActivity extends AppCompatActivity {
      * @param v
      */
     public void goToSettings(View v) {
-        Toast.makeText(this, "Settings not yet implemented", Toast.LENGTH_SHORT).show();
+        if(uname.equals(LoginPage.GUEST_NAME)) {
+            Toast.makeText(this, "Settings not available to guests", Toast.LENGTH_SHORT).show();
+        } else {
+            Intent settings = new Intent(MainActivity.this, Settings.class);
+            settings.putExtra("username", uname);
+            startActivity(settings);
+
+        }
     }
 
     /**
@@ -38,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void goToPlay(View v) {
         Intent levelSelectScreen = new Intent(MainActivity.this, LevelSelectScreen.class);
+        levelSelectScreen.putExtra("username", uname);
         startActivity(levelSelectScreen);
     }
 
@@ -55,8 +65,13 @@ public class MainActivity extends AppCompatActivity {
      * @param v
      */
     public void goToStats(View v) {
-        Toast.makeText(this, "Stat tracking not yet implemented", Toast.LENGTH_SHORT).show();
-
+        if(uname.equals(LoginPage.GUEST_NAME)) {
+            Toast.makeText(this, "Stats not available for guests", Toast.LENGTH_SHORT).show();
+        } else {
+            Intent statsActivity = new Intent(MainActivity.this, StatsActivity.class);
+            statsActivity.putExtra("username", uname);
+            startActivity(statsActivity);
+        }
     }
 
     /**
@@ -64,8 +79,12 @@ public class MainActivity extends AppCompatActivity {
      * @param v
      */
     public void shareStats(View v) {
-        Toast.makeText(this, "Stat sharing not yet implemented", Toast.LENGTH_SHORT).show();
-
+        if(uname.equals(LoginPage.GUEST_NAME)) {
+            Toast.makeText(this, "Stat sharing not available for guests", Toast.LENGTH_SHORT).show();
+        } else {
+            ShareStats shareStats = new ShareStats();
+            shareStats.show(getSupportFragmentManager(), "shareStats");
+        }
     }
 
     /**

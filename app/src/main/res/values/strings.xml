@@ -16,4 +16,7 @@
     <string name="back_button">Back</string>
     <string name="loginFile">com.sam.l2type.LOGIN_PREFERENCES</string>
 
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

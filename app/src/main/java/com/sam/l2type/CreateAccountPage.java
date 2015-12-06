@@ -35,7 +35,7 @@ public class CreateAccountPage extends AppCompatActivity {
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putString(uname, pass);
             editor.commit();
-
+            UserFileHelper.createFile(this, uname);
             Toast.makeText(this, "Account Created: " + uname, Toast.LENGTH_SHORT).show();
             goToLogin(uname);
         } else {
@@ -68,7 +68,9 @@ public class CreateAccountPage extends AppCompatActivity {
     private boolean checkAccountNameAvailable(String uname) {
         SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
         String defaultValue = "";
+        boolean notAlphaNumeric = uname.matches("^.*[^a-zA-Z0-9 ].*$");
         String check = sharedPref.getString(uname, defaultValue);
-        return check.equals(defaultValue) && !uname.equals(LoginPage.GUEST_NAME) && !uname.equals("");
+        return check.equals(defaultValue) && !uname.equals(LoginPage.GUEST_NAME) && !uname.equals("")
+                && !notAlphaNumeric;
     }
 }

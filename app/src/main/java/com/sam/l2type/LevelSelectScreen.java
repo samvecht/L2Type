@@ -17,11 +17,12 @@ import java.util.List;
  */
 public class LevelSelectScreen extends ListActivity {
     private List<LevelPack> levels;
+    String uname;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_select);
-
+        uname = getIntent().getStringExtra("username");
         TextView text;
         LevelsDB dbHelper = new LevelsDB(this);
 
@@ -54,6 +55,7 @@ public class LevelSelectScreen extends ListActivity {
 
         Intent playScreen = new Intent(LevelSelectScreen.this, PlayScreen.class);
         playScreen.putExtra("levelPack", levelName);
+        playScreen.putExtra("username", uname);
         startActivity(playScreen);
     }
 }

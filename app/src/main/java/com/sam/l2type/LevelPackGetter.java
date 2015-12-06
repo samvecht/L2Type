@@ -160,7 +160,6 @@ public class LevelPackGetter {
                             Toast.LENGTH_SHORT).show();
 
                 } else {
-                    Toast.makeText(caller.getApplicationContext(), "No new packs to download", Toast.LENGTH_SHORT).show();
 
                 }
             }
